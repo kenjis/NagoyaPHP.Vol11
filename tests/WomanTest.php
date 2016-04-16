@@ -8,8 +8,8 @@ class WomanTest extends \PHPUnit_Framework_TestCase
     {
         $obj = new Woman(10);
         $mother = new Woman(10);
-        $obj->setParent($mother);
-        $test = $obj->getParent();
+        $obj->setMother($mother);
+        $test = $obj->getMother();
         $expected = $mother;
         $this->assertEquals($expected, $test);
     }

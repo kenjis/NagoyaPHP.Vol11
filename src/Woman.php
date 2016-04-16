@@ -18,25 +18,95 @@ class Woman
     /**
      * @var Woman
      */
-    private $parent;
+    private $mother;
 
     public function __construct($id)
     {
         $this->id = $id;
     }
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
-    public function setParent(Woman $parent)
+    public function setMother(Woman $mother)
     {
-        $this->parent = $parent;
+        $this->mother = $mother;
     }
 
-    public function getParent()
+    /**
+     * @return Woman|null
+     */
+    public function getMother()
     {
-        return $this->parent;
+        return $this->mother;
+    }
+
+    public function getGrandma()
+    {
+        $mother = $this->getMother();
+        if ($mother) {
+            return $mother->getMother();
+        } else {
+            return null;
+        }
+    }
+
+    public function isMother(Woman $woman)
+    {
+        if ($this->getMother() === $woman) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function isDaughter(Woman $woman)
+    {
+        if ($woman->getMother() === $this) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function isSister(Woman $woman)
+    {
+        if ($this->getMother() === $woman->getMother()) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function isAunt(Woman $woman)
+    {
+        if ($this->getGrandma() === $woman->getMother()) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function isCousin(Woman $woman)
+    {
+        if ($this->getGrandma() === $woman->getGrandma()) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function isNiece(Woman $woman)
+    {
+        if ($this->getMother() === $woman->getGrandma()) {
+            return true;
+        }
+        
+        return false;
     }
 }

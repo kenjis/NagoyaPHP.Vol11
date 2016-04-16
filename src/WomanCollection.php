@@ -39,54 +39,38 @@ class WomanCollection
             $a = $this->find($a);
             $b = $this->find($b);
 
-            $aMother = $a->getParent();
-            if ($aMother === $b) {
+            if ($a->isMother($b)) {
                 return 'mo';
             }
 
-            $aGrandma = $aMother->getParent();
-            $bMother = $b->getParent();
-            if ($aGrandma === $bMother) {
+            if ($a->isAunt($b)) {
                 return 'au';
             }
 
-            if ($aMother === $bMother) {
+            if ($a->isSister($b)) {
                 return 'si';
             }
 
-            if ($bMother) {
-                $bGrandma = $bMother->getParent();
-            } else {
-                $bGrandma = null;
-            }
-            if ($aGrandma === $bGrandma) {
+            if ($a->isCousin($b)) {
                 return 'co';
             }
         } else {
             $a = $this->find($a);
             $b = $this->find($b);
 
-            $bMother = $b->getParent();
-            if ($bMother === $a) {
+            if ($a->isDaughter($b)) {
                 return 'da';
             }
 
-            $aMother = $a->getParent();
-            if ($aMother === $bMother) {
+            if ($a->isSister($b)) {
                 return 'si';
             }
 
-            $bGrandma = $bMother->getParent();
-            if ($aMother === $bGrandma) {
+            if ($a->isNiece($b)) {
                 return 'ni';
             }
 
-            if ($aMother) {
-                $aGrandma = $aMother->getParent();
-            } else {
-                $aGrandma = null;
-            }
-            if ($aGrandma === $bGrandma) {
+            if ($a->isCousin($b)) {
                 return 'co';
             }
         }
