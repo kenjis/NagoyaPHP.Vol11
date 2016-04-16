@@ -31,6 +31,11 @@ class WomanCollection
         return $this->collection[$id];
     }
 
+    /**
+     * @param int $a
+     * @param int $b
+     * @return string
+     */
     public function getRelation($a, $b)
     {
         if ($a === $b) {
