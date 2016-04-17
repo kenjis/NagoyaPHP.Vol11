@@ -46,6 +46,9 @@ class Woman
         return $this->mother;
     }
 
+    /**
+     * @return Woman|null
+     */
     public function getGrandma()
     {
         $mother = $this->getMother();
@@ -58,7 +61,7 @@ class Woman
 
     public function isMother(Woman $woman)
     {
-        if ($this->getMother() === $woman) {
+        if ($this->isSame($this->getMother(), $woman)) {
             return true;
         }
         
@@ -67,7 +70,7 @@ class Woman
 
     public function isDaughter(Woman $woman)
     {
-        if ($woman->getMother() === $this) {
+        if ($this->isSame($woman->getMother(), $this)) {
             return true;
         }
         
@@ -76,7 +79,7 @@ class Woman
 
     public function isSister(Woman $woman)
     {
-        if ($this->getMother() === $woman->getMother()) {
+        if ($this->isSame($this->getMother(), $woman->getMother())) {
             return true;
         }
         
@@ -85,7 +88,7 @@ class Woman
 
     public function isAunt(Woman $woman)
     {
-        if ($this->getGrandma() === $woman->getMother()) {
+        if ($this->isSame($this->getGrandma(), $woman->getMother())) {
             return true;
         }
         
@@ -94,7 +97,7 @@ class Woman
 
     public function isCousin(Woman $woman)
     {
-        if ($this->getGrandma() === $woman->getGrandma()) {
+        if ($this->isSame($this->getGrandma(), $woman->getGrandma())) {
             return true;
         }
         
@@ -103,10 +106,23 @@ class Woman
 
     public function isNiece(Woman $woman)
     {
-        if ($this->getMother() === $woman->getGrandma()) {
+        if ($this->isSame($this->getMother(), $woman->getGrandma())) {
             return true;
         }
         
         return false;
+    }
+
+    protected function isSame($a, $b)
+    {
+        if ($a === null) {
+            return false;
+        }
+        
+        if ($b === null) {
+            return false;
+        }
+        
+        return $a === $b;
     }
 }

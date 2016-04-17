@@ -38,46 +38,35 @@ class WomanCollection
      */
     public function getRelation($a, $b)
     {
+        $a = $this->find($a);
+        $b = $this->find($b);
+
         if ($a === $b) {
             return 'me';
-        } elseif ($a > $b) {
-            $a = $this->find($a);
-            $b = $this->find($b);
+        }
 
-            if ($a->isMother($b)) {
-                return 'mo';
-            }
+        if ($a->isMother($b)) {
+            return 'mo';
+        }
 
-            if ($a->isAunt($b)) {
-                return 'au';
-            }
+        if ($a->isAunt($b)) {
+            return 'au';
+        }
 
-            if ($a->isSister($b)) {
-                return 'si';
-            }
+        if ($a->isSister($b)) {
+            return 'si';
+        }
 
-            if ($a->isCousin($b)) {
-                return 'co';
-            }
-        } else {
-            $a = $this->find($a);
-            $b = $this->find($b);
+        if ($a->isCousin($b)) {
+            return 'co';
+        }
 
-            if ($a->isDaughter($b)) {
-                return 'da';
-            }
+        if ($a->isDaughter($b)) {
+            return 'da';
+        }
 
-            if ($a->isSister($b)) {
-                return 'si';
-            }
-
-            if ($a->isNiece($b)) {
-                return 'ni';
-            }
-
-            if ($a->isCousin($b)) {
-                return 'co';
-            }
+        if ($a->isNiece($b)) {
+            return 'ni';
         }
 
         return '-';
