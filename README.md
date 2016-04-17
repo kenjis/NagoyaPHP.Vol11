@@ -8,3 +8,4 @@ http://nabetani.sakura.ne.jp/hena/ord6kinship/
 * https://gist.github.com/ounziw/ed70cd258158ebc5bfa875a8746d9ea2
 * https://gist.github.com/longkey1/ce90aa78ea679d17cbefcee183e9f92f
 * https://github.com/longkey1/nagoyaphp-160416-doukaku
+* https://github.com/hidenorigoto/Nagoya.Php11
